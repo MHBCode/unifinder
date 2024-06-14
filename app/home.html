@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../assets/styles/main.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="../assets/images/logo-unifinder.png" alt="logo"> <h1>UniFinder</h1>
+            </div>
+            <ul class="options">
+
+            </ul>
+        </header>
+        <section class="content-section">
+            <div class="market-slogan">
+                <button>
+                <i class="bi bi-arrow-left"></i>
+                دعنا نساعدك في عملية الإنضمام لأحدا الجامعات الأردنية
+                </button>
+                <h2>
+                    إبحث عن مستقبلك في مجموعة من الجامعات الأردنية أو
+                </h2>
+            </div>
+            <div class="search-container">
+                <input type="number" id="marksInput" min="0" max="100" placeholder="Enter your final marks %" class="search-bar">
+                <button type="button" id="search-marks" class="search-button" onclick="navigateToList()">
+                    إبحث
+                </button>
+            </div>
+            <div class="news">
+                <h3 class="title">
+                    الإعلانات والأنشطة
+                </h3>
+                <div class="news-place">
+                    <div class="single-news">
+                        <img src="../assets/images/news-1.jpg" alt="news-img">
+                        <div class="news-desc">
+                            <div class="news-details">
+                                <div class="date-div">
+                                    <p>10/6/2024</p>
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="auth-div">
+                                    <p>
+                                        مؤسسة مجدلاوي للخدمات الجامعية
+                                    </p>
+                                    <i class="bi bi-building"></i>
+                                </div>
+                            </div>
+                            <h4>
+                                سجل الآن في البرامج الدراسية عن بُعد (online)
+                            </h4>
+                            <p>
+                                أعلنت وزارة التعليم العالي والبحث العلمي اليوم الخميس بأن مجلس التعليم العالي قرر في جلسته الأخيرة التي عقدها برئاسة وزير التعليم العالي والبحث العلمي الدكتور عزمي محافظة الموافقة على استحداث عدد من التخصصات والبرامج الدراسية النوعية والجديدة.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="single-news">
+                        <img src="../assets/images/news-2.PNG" alt="news-img">
+                        <div class="news-desc">
+                            <div class="news-details">
+                                <div class="date-div">
+                                    <p>10/6/2024</p>
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="auth-div">
+                                    <p>
+                                        جامعة عمان العربية
+                                    </p>
+                                    <i class="bi bi-building"></i>
+                                </div>
+                            </div>
+                            <h4>
+                                بدئ فترة التسجيل في جامعة عمان العربية
+                            </h4>
+                            <p>
+                                بدء فترة التسجيل للطلبة الجدد والقدامى للفصل الدراسي الثاني  2023-2024
+بامكانكم الإطلاع على الجدول الدراس للتخصصات البكالوريوس والماجيستير والدبلوم والدبلوم العالي
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section type2">
+            <div class="promotion">
+                <div class="promo-desc">
+                    <h4>
+                      احصل عل خصم حسب المعدل من جامعة عمان العربية
+                    </h4>
+                    <p>
+                        توفر عمان العربية مجموعة واسعه من الخصومات على اسعار الساعات لمختلف التخصصات في مختلف الكليات وتوفر اضافة الى ذلك مجموعة من الخدمات التس تسهل على الطلاب عملية التعليم ومنها المواصلات والارشاد الاكاديمي
+                        #سجل لدراسة #البكالوريوس أو #الماجستير – يتوفر محاضرات أيام #السبت و#مسائية بالإضافة للمحاضرات الاعتيادية
+                        سجل الان في جامعة عمان العربية - غير ربحية تستقطب المتميزين.
+                        خصومات لكامل فترة الدراسة تصل الى 90% وتخضع للشروط والأحكام في الجامعة. يتوفر #خصومات اضافية لكامل فترة الدراسة – استفسر عنها!
+                        للتواصل عبر الخط الساخن للاستفسار او التسجيل:   0798877440 
+                        لمزيد من التفاصيل عن التخصصات ورسوم الساعات والخصومات والية التسجيل
+                    </p>
+                     <button>
+                        <i class="bi bi-arrow-left"></i>
+                        قم بالتسجيل في جامعة عمان العربية
+                     </button>
+                </div>
+                <div class="promo-img">
+                    <img src="../assets/images/promo-1.jpg" alt="promo-1">
+                </div>
+            </div>
+        </section>
+
+        <!--Scripts-->
+        <script>
+            function navigateToList() {
+                var marks = document.getElementById('marksInput').value;
+                window.location.href = "list.html?marks=" + marks;
+            }
+        </script>
+    </body>
+</html>
