@@ -11,7 +11,7 @@
     <body>
         <header>
             <div class="logo">
-                <img src="../assets/images/logo-unifinder.png" alt="logo"> <h1>UniFinder</h1>
+                <img src="assets/images/logo-unifinder.png" alt="logo"> <h1>UniFinder</h1>
             </div>
             <ul class="options">
 
@@ -39,7 +39,7 @@
                 </h3>
                 <div class="news-place">
                     <div class="single-news">
-                        <img src="../assets/images/news-1.jpg" alt="news-img">
+                        <img src="assets/images/news-1.jpg" alt="news-img">
                         <div class="news-desc">
                             <div class="news-details">
                                 <div class="date-div">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="single-news">
-                        <img src="../assets/images/news-2.PNG" alt="news-img">
+                        <img src="assets/images/news-2.PNG" alt="news-img">
                         <div class="news-desc">
                             <div class="news-details">
                                 <div class="date-div">
@@ -108,7 +108,7 @@
                      </button>
                 </div>
                 <div class="promo-img">
-                    <img src="../assets/images/promo-1.jpg" alt="promo-1">
+                    <img src="assets/images/promo-1.jpg" alt="promo-1">
                 </div>
             </div>
         </section>
@@ -117,7 +117,12 @@
         <script>
             function navigateToList() {
                 var marks = document.getElementById('marksInput').value;
-                window.location.href = "list.html?marks=" + marks;
+                if(marks !== null && marks !== 0 & marks !== ""){
+                    window.location.href = "app/list.html?marks=" + marks;
+                }
+                else{
+                    window.alert("لم تقم بإدخال علامتك!");
+                }
             }
         </script>
     </body>
