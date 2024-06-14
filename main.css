@@ -296,4 +296,7 @@ select{
       select {
         width: 40%;
       }
+      button i{
+        display: none;
+      }
 }
