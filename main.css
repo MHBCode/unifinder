@@ -299,4 +299,7 @@ select{
       button i{
         display: none;
       }
+      .news-details div {
+        font-size: 12px;
+      }
 }
