@@ -71,13 +71,13 @@
 
             function getHourlyFee(course, marks) {
                 if (marks >= 95) {
-                    return course.hourly_fee_cat1;
-                } else if (marks >= 90) {
-                    return course.hourly_fee_cat2;
-                } else if (marks >= 85) {
-                    return course.hourly_fee_cat3;
-                } else {
                     return course.hourly_fee_cat4;
+                } else if (marks >= 90) {
+                    return course.hourly_fee_cat3;
+                } else if (marks >= 85) {
+                    return course.hourly_fee_cat2;
+                } else {
+                    return course.hourly_fee_cat1;
                 }
             }
 
