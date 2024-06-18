@@ -39,6 +39,9 @@
                     <option value="">حسب المنطقة</option>
                 </select>
             </div>
+            <p id="numberOfM">
+
+            </p>
         </div>
         <div class="table-div">
             <h2>قائمة التخصصات</h2>
@@ -59,6 +62,7 @@
         </div>
     </section>
     <script>
+        var courseCount = 0;
         document.addEventListener('DOMContentLoaded', function () {
             function getUrlParameter(name) {
                 name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -97,6 +101,8 @@
                 tableBody.innerHTML = '';
 
                 data.forEach(course => {
+                    courseCount++;
+                    document.getElementById('numberOfM').innerText = "عدد الفرص المتاحة: " + courseCount;
                     if (course['min-mark'] <= marks) {
                         const hourlyFee = getHourlyFee(course, marks);
                         const row = document.createElement('tr');
@@ -146,6 +152,7 @@
             }
 
             document.getElementById('filter-button').addEventListener('click', function() {
+                courseCount = 0;
                 const selectedYears = document.getElementById('years').value;
                 const selectedFaculty = document.getElementById('faculty').value;
                 const selectedUniversity = document.getElementById('university').value;
@@ -162,6 +169,7 @@
             });
 
             document.getElementById('clear-button').addEventListener('click', function() {
+                courseCount = 0;
                 document.getElementById('years').value = '';
                 document.getElementById('faculty').value = '';
                 document.getElementById('university').value = '';
