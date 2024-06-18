@@ -65,7 +65,7 @@
 
     const uData1 = "أنشئت جامعة عمان العربية عام 1997 بقرار مجلس التعليم العالي رقم (1476) بتاريخ 24/11/1997، كجامعة خاصة غير ربحية تختص بالدراسات الجامعية العليا، وذلك تحت مسمى \"جامعة عمان العربية للدراسات العليا\"؛ لتكون أول جامعة أردنية مختصة في برامج الدراسات العليا للماجستير والدكتوراه؛ فبتاريخ 30/9/1998 منح مجلس التعليم العالي الموافقة للجامعة ببدء التدريس بقراره رقم (1625)، حيث استقبلت الجامعة أول فوج من طلبتها منذ بداية الفصل الدراسي الثاني من العام الجامعي 1999/2000.";
     const uData2 = "تأسست جامعة فيلادلفيا في عام 13 آب 1989، تقع الجامعة على الطريق الرئيسي بين عمّان وجرش. تحتل جامعة فيلادلفيا المرتبة 2056 عالمياً، والمرتبة 30 على مستوى الوطن العربي، والمرتبة 2 على مستوى الجامعات الأردنية كافة، والمرتبة الأولى على مستوى الجامعات الأردنية الخاصة، وذلك وفقاً لمقياس ويبومتركس. جاء إختيار اسم (جامعة فيلادلفيا) إحياء لموروث ثقافي، ففيلادلفيا هو الاسم القديم لمدينة عمان أو كما كانت تسمى ربة عمون الذي أطلقه القائد بطليموس فيلادلفيوس على مدينة ربة عمون سنة 285 قبل الميلاد وتعني الحب الأخوي.";
-
+    const uData3 = "تأسست جامعة الشرق الأوسط عام 2005 م كجامعة للدراسات العليا بإثني عشر تخصصاً وهي منظمة غير ربحية، وفي بداية العام الدراسي 2009/2008 م افتتحت الجامعة المسار الأكاديمي لطلبة البكالوريوس بعشرين تخصصاً مع نمو في أعداد الطلبة وأعضاء الهيئة التدريسية.";
 
         document.addEventListener("DOMContentLoaded", function() {
     // Function to get URL parameter by name
@@ -93,7 +93,7 @@
                 document.getElementById("area").innerText = "موقع الجامعة:" + majorDetails.area;
                 document.getElementById("faculty").innerText = "اسم الكلية: " + majorDetails.faculty;
                 document.getElementById("registration_fee").innerText = "رسوم التسجيل: " + majorDetails.registration_fee;
-                document.getElementById("registration_fee").innerText = " عدد سنوات الدراسة: " + majorDetails.years;
+                document.getElementById("years").innerText = " عدد سنوات الدراسة: " + majorDetails.years;
                 document.getElementById("hourly_fee_cat1").innerText = majorDetails.hourly_fee_cat1;
                 document.getElementById("hourly_fee_cat2").innerText = majorDetails.hourly_fee_cat2;
                 document.getElementById("hourly_fee_cat3").innerText = majorDetails.hourly_fee_cat3;
@@ -107,8 +107,8 @@
                     document.getElementById("uniDetails").innerText = uData2;
                     document.getElementById("universityImage").src = "assets/images/phu.jpeg" ;
                 }
-                else if (majorDetails.university == "جامعة الشرق الاوسط ") {
-                    document.getElementById("uniDetails").innerText = uData2;
+                else if (majorDetails.university == "جامعة الشرق الاوسط " || majorDetails.university == "جامعة الشرق الاوسط") {
+                    document.getElementById("uniDetails").innerText = uData3;
                     document.getElementById("universityImage").src = "assets/images/meu.jpg" ;
                 }
             } else {
