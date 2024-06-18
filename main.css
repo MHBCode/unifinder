@@ -50,6 +50,10 @@ button{
     color: white;
     display: flex;
     gap: 0.4rem;
+    cursor: pointer;
+}
+table button{
+    border-radius: 0;
 }
 .logo{
     height: 90%;
@@ -190,7 +194,7 @@ i{
 }
 .promo-img{
     height: 90%;
-    width: 38%;
+    width: 20%;
     border: 2px solid aliceblue;
     border-radius: 10px;
     overflow: hidden;
@@ -202,7 +206,7 @@ i{
 }
 .promo-desc{
     height: 90%;
-    width: 48%;
+    width: 80%;
     text-align: end;
     display: flex;
     flex-direction: column;

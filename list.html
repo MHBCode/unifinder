@@ -1,80 +1,174 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <img src="assets/images/logo-unifinder.png" alt="logo"> <h1>UniFinder</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Select Options</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo-unifinder.png" alt="logo"> <h1>UniFinder</h1>
+        </div>
+        <ul class="options">
+        </ul>
+    </header>
+    <section class="content-section">
+        <div class="filter-div-container">
+            <h2>تحديد الخيارات</h2>
+            <div class="filter-div">
+                <button id="clear-button">
+                    <i class="bi bi-x-circle"></i>
+                    الغاء الخيارات
+                </button>
+                <button id="filter-button">
+                    <i class="bi bi-funnel"></i>
+                    تطبيق
+                </button>
+                <select id="years">
+                    <option value="">حسب عدد سنوات الدراسة</option>
+                </select>
+                <select id="faculty">
+                    <option value="">حسب الكلية</option>
+                </select>
+                <select id="university">
+                    <option value="">حسب الجامعة</option>
+                </select>
+                <select id="area">
+                    <option value="">حسب المنطقة</option>
+                </select>
             </div>
-            <ul class="options">
+        </div>
+        <div class="table-div">
+            <h2>قائمة التخصصات</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>المزيد</th>
+                        <th>عدد السنوات</th>
+                        <th>رسوم التسجيل</th>
+                        <th>رسوم الساعة</th>
+                        <th>الجامعة</th>
+                        <th>التخصص</th>
+                    </tr>
+                </thead>
+                <tbody id="course-table">
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
 
-            </ul>
-        </header>
-        <section class="content-section">
-            <div class="filter-div-container">
-                <h2>تحديد الخيارات</h2>
-                <div class="filter-div">
-                    <button>
-                        <i class="bi bi-funnel"></i>
-                        تطبيق
-                    </button>
-                    <select id="years">
-                        <option>
-                            حسب عدد سنوات الدراسة
-                        </option>
-                    </select>
-                    <select id="faculty">
-                        <option>
-                            حسب الكلية
-                        </option>
-                    </select>
-                    <select id="university">
-                        <option>
-                            حسب الجامعة
-                        </option>
-                    </select>
-                    <select id="area">
-                        <option>
-                            حسب المنطقة
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="table-div">
-                <h2>قائمة التخصصات</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>المزيد</th>
-                            <th>عدد السنوات</th>
-                            <th>رسوم التسجيل</th>
-                            <th>رسوم الساعة</th>
-                            <th>الجامعة</th>
-                            <th>التخصص</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+            const marks = parseInt(getUrlParameter('marks'), 10);
+
+            function getHourlyFee(course, marks) {
+                if (marks >= 95) {
+                    return course.hourly_fee_cat1;
+                } else if (marks >= 90) {
+                    return course.hourly_fee_cat2;
+                } else if (marks >= 85) {
+                    return course.hourly_fee_cat3;
+                } else {
+                    return course.hourly_fee_cat4;
+                }
+            }
+
+            let courseData = [];
+
+            fetch('tabledata.json')
+                .then(response => response.json())
+                .then(data => {
+                    courseData = data.courses;
+                    populateTable(courseData);
+                    populateFilters(courseData);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+            function populateTable(data) {
+                const tableBody = document.getElementById('course-table');
+                tableBody.innerHTML = '';
+
+                data.forEach(course => {
+                    if (course['min-mark'] <= marks) {
+                        const hourlyFee = getHourlyFee(course, marks);
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                             <td><button style="width: 100%; justify-content: space-between;">
                                 <i class="bi bi-arrow-left"></i>
                                 معلومات أكثر
                             </button></td>
-                            <td>4</td>
-                            <td>260 د</td>
-                            <td>24 د</td>
-                            <td>جامعة عمان العربية</td>
-                            <td>هندسةالبرمجيات</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </body>
+                            <td>${course.years}</td>
+                            <td>${course.registration_fee}</td>
+                            <td>${hourlyFee}</td>
+                            <td>${course.university}</td>
+                            <td>${course.specialization}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    }
+                });
+            }
+
+            function populateFilters(data) {
+                const uniqueYears = new Set();
+                const uniqueFaculties = new Set();
+                const uniqueUniversities = new Set();
+                const uniqueAreas = new Set();
+
+                data.forEach(course => {
+                    uniqueYears.add(course.years);
+                    uniqueFaculties.add(course.faculty);
+                    uniqueUniversities.add(course.university);
+                    uniqueAreas.add(course.area);
+                });
+
+                populateSelect('years', [...uniqueYears]);
+                populateSelect('faculty', [...uniqueFaculties]);
+                populateSelect('university', [...uniqueUniversities]);
+                populateSelect('area', [...uniqueAreas]);
+            }
+
+            function populateSelect(selectId, options) {
+                const selectElement = document.getElementById(selectId);
+                options.forEach(optionValue => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = optionValue;
+                    optionElement.textContent = optionValue;
+                    selectElement.appendChild(optionElement);
+                });
+            }
+
+            document.getElementById('filter-button').addEventListener('click', function() {
+                const selectedYears = document.getElementById('years').value;
+                const selectedFaculty = document.getElementById('faculty').value;
+                const selectedUniversity = document.getElementById('university').value;
+                const selectedArea = document.getElementById('area').value;
+
+                const filteredData = courseData.filter(course => {
+                    return (!selectedYears || course.years == selectedYears) &&
+                           (!selectedFaculty || course.faculty == selectedFaculty) &&
+                           (!selectedUniversity || course.university == selectedUniversity) &&
+                           (!selectedArea || course.area == selectedArea);
+                });
+
+                populateTable(filteredData);
+            });
+
+            document.getElementById('clear-button').addEventListener('click', function() {
+                document.getElementById('years').value = '';
+                document.getElementById('faculty').value = '';
+                document.getElementById('university').value = '';
+                document.getElementById('area').value = '';
+                populateTable(courseData);
+            });
+        });
+    </script>
+</body>
 </html>
