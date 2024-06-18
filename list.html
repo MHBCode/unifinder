@@ -101,7 +101,7 @@
                         const hourlyFee = getHourlyFee(course, marks);
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td><button style="width: 100%; justify-content: space-between;">
+                            <td><button onClick="goToMajor(${course.id})" style="width: 100%; justify-content: space-between;">
                                 <i class="bi bi-arrow-left"></i>
                                 معلومات أكثر
                             </button></td>
@@ -169,6 +169,10 @@
                 populateTable(courseData);
             });
         });
+
+        function goToMajor(cid){
+            window.location.href = "majorDetails.html?id=" + cid;
+        }
     </script>
 </body>
 </html>

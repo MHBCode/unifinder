@@ -265,6 +265,32 @@ select{
     text-align: end;
     padding: 0.2rem;
 }
+/*Course styles*/
+.courseDetails{
+    width: 98vw;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.img-div{
+    width: 30%;
+    height: 83vh;
+}
+.img-div img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.detailsDiv{
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
 @media (max-width:1000px) {
     .market-slogan {
         margin: 1rem 0 0 0;
